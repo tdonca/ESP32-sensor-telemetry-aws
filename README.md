@@ -7,13 +7,18 @@
 
 #### Example output:
 ```
-I (326) sensor-measure-i2c: STARTING SENSOR READING APPLICATION
+I (317) cpu_start: Starting scheduler on PRO CPU.
+I (0) cpu_start: Starting scheduler on APP CPU.
+I (326) application-main: STARTING SENSOR READING APPLICATION
 I (336) sensor-measure-i2c: CONFIGURED I2C PARAMS
 I (336) sensor-measure-i2c: INSTALLED I2C DRIVER
-I (3346) sensor-measure-i2c: STARTED SENSOR READING LOOP
-I (3396) sensor-measure-i2c: Raw data: 24660, Temperature Reading: 19.270227 C
+I (346) sensor-measure-i2c: PERFORMING SOFT RESET AND WAITING FOR SENSOR RESPONSE...
+I (5376) application-main: STARTED SENSOR READING LOOP
+I (5426) application-main: Temperature Reading: 18.53 C
 
+I (8426) application-main: STARTED SENSOR READING LOOP
+I (8476) application-main: Temperature Reading: 18.51 C
 
-I (6396) sensor-measure-i2c: STARTED SENSOR READING LOOP
-I (6446) sensor-measure-i2c: Raw data: 24628, Temperature Reading: 19.184426 C
+...
+
 ```
