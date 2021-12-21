@@ -2,11 +2,10 @@
 #include "driver/i2c.h"
 #include "freertos/FreeRTOS.h"
 
+#include "temp_sensor.h"
+
 static const char *TAG = "sensor-measure-i2c";
 
-//TODO: why do so many GPIO pins not work? (18, 19, 27 work so far...)
-#define I2C_MASTER_SCL_GPIO 27
-#define I2C_MASTER_SDA_GPIO 18
 #define I2C_CONTROLLER_NUM 0
 #define I2C_MASTER_CLOCK_SPEED 400000
 #define I2C_MASTER_TIMEOUT 1000
@@ -155,25 +154,4 @@ esp_err_t sensor_read_temperature(double* result_temp) {
     *result_temp = compute_temperature(data_buf[0], data_buf[1]);
 
     return ESP_OK;
-}
-
-/***************************************/
-
-int app_main(void) {
-    ESP_LOGI(TAG, "STARTING SENSOR READING APPLICATION");
-    ESP_ERROR_CHECK(sensor_init());
-
-    // Loop for measuring temperature
-    while (1) {
-
-        // Delay between readings
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
-        ESP_LOGI(TAG, "STARTED SENSOR READING LOOP");
-        
-        // Get temperature reading from the sensor
-        double temperature = 0;
-        if (ESP_OK == sensor_read_temperature(&temperature)) {
-            ESP_LOGI(TAG, "Temperature Reading: %.2f C\n", temperature);
-        }        
-    }  
 }
